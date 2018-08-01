@@ -12,7 +12,6 @@ using System.Threading.Tasks;
  * Have added in try and catch exception to make sure the code don't break when there is no selector available 
  */
 
-
 class EntryPoint
 {
     static void Main(string[] args)
@@ -23,10 +22,13 @@ class EntryPoint
         * Tells selenium what rules to follow HTML code. 
         * Creates a crumbtrailer. 
         */
+
         string cssPath = "#post-108 > div > figure > img";
+
         /* Go to inspect element, copy -> Xpath
          * Remove spaces and remove ""
          */
+
         string xPath = "//*[@id=\"post-108\"]/div/figure/img";
 
         IWebDriver driver = new ChromeDriver();
@@ -34,21 +36,22 @@ class EntryPoint
         /* In general use cssPath, IE works faster and often have difficulties to find the element if its Xpath
          * if out for performance, they are faster
          */
-        IWebElement cssPathElement = driver.FindElement(By.CssSelector(cssPath));
-        IWebElement xpathElement = driver.FindElement(By.XPath(xPath));
+        IWebElement cssPathElement;
+        IWebElement xpathElement;
 
         try
-        { 
+        {
+            //Element need to be present inside the try/catch block. Otherwise it is trying to look for it
+            cssPathElement = driver.FindElement(By.CssSelector(cssPath));
+            xpathElement = driver.FindElement(By.XPath(xPath));
 
             if (cssPathElement.Displayed && xpathElement.Displayed)
             {
-
             GreenMessage("Well done, its there");
-
             }
         }
 
-        catch (Exception)
+        catch (NoSuchElementException)
         {
             RedMessage("can't see it, something gone wrong");
         }
