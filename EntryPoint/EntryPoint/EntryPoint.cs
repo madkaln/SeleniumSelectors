@@ -4,6 +4,8 @@ using OpenQA.Selenium.Chrome;
 
 
 /* Find element by name
+ * Best is to use Name and ID selectors. Speak with dev team and ask them to include them in their code
+ * After, Class name and last css and xpath if no other avilable. 
  */
 
 class EntryPoint

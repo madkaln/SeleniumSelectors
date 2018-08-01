@@ -6,6 +6,7 @@ using System.Threading;
 
 /*
  * Find Elements by class name
+ * can target different element that go by the same class
  */
 
 class EntryPoint
